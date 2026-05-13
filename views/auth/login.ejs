@@ -2,448 +2,410 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Login | Lembur B06</title>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+
   <style>
     * {
+      margin: 0;
+      padding: 0;
       box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
     }
 
     body {
-      margin: 0;
+      width: 100%;
       min-height: 100vh;
-      font-family: 'Poppins', sans-serif;
-      background: linear-gradient(135deg, #143b2a, #d8e4dd);
       display: flex;
-      align-items: center;
       justify-content: center;
-    }
-
-    .container {
-      width: 1080px;
-      height: 650px;
-      background: #fff;
-      border-radius: 32px;
+      align-items: center;
       overflow: hidden;
       position: relative;
-      box-shadow: 0 25px 55px rgba(0, 0, 0, 0.3);
+      background: #0f172a;
+      padding: 40px;
     }
 
-    .form-container {
+    body::before {
+      content: "";
       position: absolute;
-      top: 0;
-      width: 50%;
-      height: 100%;
-      background: #fff;
-      padding: 72px 68px;
-      transition: all 0.7s ease-in-out;
+      inset: 0;
+      background: url('/images/login-bg.png') center/cover no-repeat;
+      filter: blur(5px) brightness(0.55);
+      transform: scale(1.06);
+      z-index: -2;
+    }
+
+    body::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.28);
+      z-index: -1;
     }
 
     .login-container {
-      left: 0;
-      z-index: 2;
+      width: 1120px;
+      height: 720px;
+      display: flex;
+      border-radius: 35px;
+      overflow: hidden;
+      background: rgba(255,255,255,0.08);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 20px 45px rgba(0,0,0,0.45);
+      animation: fadeIn .8s ease;
     }
 
-    .register-container {
-      left: 0;
-      opacity: 0;
-      z-index: 1;
+    .left-side {
+      flex: 1;
+      background: rgba(255,255,255,0.06);
+      backdrop-filter: blur(10px);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
     }
 
-    .container.active .login-container {
-      transform: translateX(100%);
-      opacity: 0;
-      z-index: 1;
+    .left-content {
+      color: white;
+      padding: 60px;
+      max-width: 520px;
     }
 
-    .container.active .register-container {
-      transform: translateX(100%);
-      opacity: 1;
-      z-index: 3;
-    }
-
-    h2 {
+    .left-content h2 {
       font-size: 48px;
-      margin: 0 0 36px;
+      line-height: 1.1;
       font-weight: 900;
-      color: #111;
+      margin-bottom: 20px;
+      text-shadow: 0 5px 15px rgba(0,0,0,.45);
+    }
+
+    .left-content p {
+      font-size: 18px;
+      line-height: 1.6;
+      color: #f1f5f9;
+      font-weight: 500;
+      text-shadow: 0 4px 12px rgba(0,0,0,.45);
+    }
+
+    .right-side {
+      width: 590px;
+      background: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 75px 75px;
+      border-radius: 0 35px 35px 0;
+    }
+
+    .login-box {
+      width: 100%;
+      max-width: 420px;
+    }
+
+    .login-box h1 {
+      font-size: 50px;
+      line-height: 1.08;
+      font-weight: 900;
+      color: #111827;
+      margin-bottom: 16px;
+    }
+
+    .login-box h1 span {
+      display: block;
+      color: #22c55e;
+    }
+
+    .subtitle {
+      color: #6b7280;
+      font-size: 16px;
+      margin-bottom: 38px;
+    }
+
+    .error-msg {
+      background: #fee2e2;
+      color: #dc2626;
+      padding: 12px 14px;
+      border-radius: 12px;
+      margin-bottom: 20px;
+      font-size: 14px;
     }
 
     .input-group {
-      margin-bottom: 14px;
+      margin-bottom: 26px;
     }
 
     .input-group label {
       display: block;
-      font-size: 13px;
-      color: #555;
-      margin-bottom: 6px;
+      margin-bottom: 10px;
+      font-size: 15px;
+      font-weight: 600;
+      color: #444;
     }
 
     .input-group input {
       width: 100%;
+      height: 58px;
       border: none;
-      border-bottom: 2px solid #999;
-      padding: 10px 4px;
       outline: none;
-      font-size: 15px;
-      background: transparent;
-      font-size: 17px;
-      padding: 14px 4px;
+      border-radius: 16px;
+      background: #f3f4f6;
+      padding: 0 20px;
+      font-size: 16px;
+      color: #111827;
+      transition: .25s ease;
     }
 
     .input-group input:focus {
-      border-bottom-color: #22c55e;
+      background: #fff;
+      border: 2px solid #22c55e;
+      box-shadow: 0 0 12px rgba(34,197,94,.18);
     }
 
-    .row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin: 20px 0 28px;
-      font-size: 14px;
-    }
-
-    .remember {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      color: #333;
-    }
-
-    .row a {
-      color: #333;
-      text-decoration: none;
-      max-width: 145px;
+    .forgot {
       text-align: right;
+      margin-top: -6px;
+      margin-bottom: 30px;
     }
 
-    .main-btn {
+    .forgot a {
+      text-decoration: none;
+      color: #666;
+      font-size: 14px;
+      transition: .25s;
+    }
+
+    .forgot a:hover {
+      color: #22c55e;
+    }
+
+    .login-btn {
       width: 100%;
+      height: 60px;
       border: none;
-      background: #5f6675;
-      color: white;
-      padding: 18px;
-      border-radius: 22px;
-      font-weight: bold;
-      font-size: 18px;
-      cursor: pointer;
-    }
-
-    .main-btn:hover {
+      border-radius: 16px;
       background: #22c55e;
-    }
-
-    .social-text {
-      text-align: center;
-      margin-top: 22px;
-      font-weight: bold;
-      font-size: 14px;
-    }
-
-    .social-icons {
-      display: flex;
-      justify-content: center;
-      gap: 18px;
-      margin-top: 10px;
-}
-
-    .social-icons button {
-      width: 42px;
-      height: 42px;
-      border-radius: 50%;
-      border: 1px solid #eee;
-      background: white;
-      font-weight: bold;
-      cursor: pointer;
-      box-shadow: 0 5px 15px rgba(0,0,0,.08);
-    }
-
-    .overlay-container {
-      position: absolute;
-      top: 0;
-      left: 50%;
-      width: 50%;
-      height: 100%;
-      overflow: hidden;
-      transition: transform 0.7s ease-in-out;
-      z-index: 10;
-    }
-
-    .container.active .overlay-container {
-      transform: translateX(-100%);
-    }
-
-    .overlay {
-      width: 200%;
-      height: 100%;
-      position: relative;
-      left: -100%;
-      transform: translateX(0);
-      transition: transform 0.7s ease-in-out;
-      background:
-        linear-gradient(rgba(25, 45, 38, .58), rgba(25, 45, 38, .58)),
-        url('/images/login-bg.png');
-      background-size: cover;
-      background-position: center;
       color: white;
-    }
-
-    .container.active .overlay {
-      transform: translateX(50%);
-    }
-
-    .overlay-panel {
-      position: absolute;
-      top: 0;
-      width: 50%;
-      height: 100%;
-      padding: 60px 45px;
-      text-align: center;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 60px 55px;
-    }
-
-    .overlay-left {
-      left: 0;
-    }
-
-    .overlay-right {
-      right: 0;
-    }
-
-    .overlay-panel h1 {
-      font-size: 54px;
-      line-height: 1.05;
-      margin: 0 0 22px;
-      font-weight: 900;
-      text-shadow: 0 4px 12px rgba(0,0,0,.6);
-      max-width: 420px;
-      margin-inline: auto;
-}
-
-    .overlay-panel p {
       font-size: 18px;
-      line-height: 1.5;
-      margin-bottom: 35px;
-      text-shadow: 0 3px 10px rgba(0,0,0,.6);
-    }
-
-    .ghost-btn {
-      border: 2px solid white;
-      background: rgba(255,255,255,.12);
-      color: white;
-      padding: 18px 58px;
-      border-radius: 22px;
-      font-weight: bold;
+      font-weight: 800;
       cursor: pointer;
-      backdrop-filter: blur(5px);
-      font-size: 17px;
+      transition: .3s;
+      box-shadow: 0 10px 22px rgba(34,197,94,.32);
     }
 
-    .ghost-btn:hover {
-      background: rgba(34,197,94,.35);
-      border-color: #22c55e;
+    .login-btn:hover {
+      transform: translateY(-3px);
+      background: #16a34a;
     }
 
-    .error-msg {
-      color: #dc2626;
-      background: #fee2e2;
-      padding: 10px 12px;
-      border-radius: 10px;
-      margin-bottom: 18px;
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin: 34px 0 22px;
+      color: #777;
       font-size: 14px;
+      white-space: nowrap;
     }
 
-    @media (max-width: 768px) {
-      .container {
+    .divider::before,
+    .divider::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: #ddd;
+    }
+
+    .social-login {
+      display: flex;
+      gap: 16px;
+    }
+
+    .social-btn {
+      flex: 1;
+      height: 58px;
+      border: none;
+      border-radius: 16px;
+      background: #f3f4f6;
+      color: #111827;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: .25s;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .social-btn:hover {
+      background: #e5e7eb;
+      transform: translateY(-2px);
+    }
+
+    .google i {
+      color: #4285F4;
+    }
+
+    .apple i {
+      color: #111;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(28px) scale(.96);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    @media(max-width: 950px) {
+      body {
+        overflow: auto;
+        padding: 25px 0;
+      }
+
+      .login-container {
         width: 92%;
         height: auto;
-        min-height: 760px;
+        flex-direction: column;
       }
 
-      .form-container,
-      .overlay-container {
-        width: 100%;
-        height: 50%;
+      .left-side {
+        min-height: 260px;
       }
 
-      .login-container,
-      .register-container {
-        left: 0;
-        top: 50%;
+      .left-content {
+        padding: 35px;
       }
 
-      .container.active .login-container {
-        transform: translateY(0);
-        opacity: 0;
-      }
-
-      .container.active .register-container {
-        transform: translateY(0);
-        opacity: 1;
-      }
-
-      .overlay-container {
-        left: 0;
-        top: 0;
-      }
-
-      .container.active .overlay-container {
-        transform: translateY(0);
-      }
-
-      .overlay {
-        width: 100%;
-        left: 0;
-      }
-
-      .container.active .overlay {
-        transform: none;
-      }
-
-      .overlay-panel {
-        width: 100%;
-      }
-
-      .overlay-left,
-      .overlay-right {
-        left: 0;
-        right: auto;
-      }
-
-      .overlay-left {
-        display: none;
-      }
-
-      .container.active .overlay-left {
-        display: flex;
-      }
-
-      .container.active .overlay-right {
-        display: none;
-      }
-
-      .form-container {
-        padding: 38px 30px;
-      }
-
-      .overlay-panel h1 {
+      .left-content h2 {
         font-size: 34px;
+      }
+
+      .left-content p {
+        font-size: 14px;
+      }
+
+      .right-side {
+        width: 100%;
+        border-radius: 0 0 35px 35px;
+        padding: 55px 38px;
+      }
+
+      .login-box {
+        max-width: 100%;
+      }
+
+      .login-box h1 {
+        font-size: 42px;
+      }
+
+      .subtitle {
+        margin-bottom: 32px;
+      }
+
+      .social-login {
+        flex-direction: column;
+      }
+
+      .social-btn {
+        width: 100%;
       }
     }
   </style>
 </head>
 
 <body>
-  <div class="container" id="container">
 
-    <div class="form-container register-container">
-      <h2>Daftar di sini</h2>
+  <div class="login-container">
 
-      <form action="/register" method="POST">
-        <div class="input-group">
-          <label>Nama</label>
-          <input type="text" name="name" required />
-        </div>
-
-        <div class="input-group">
-          <label>Username</label>
-          <input type="text" name="username" required />
-        </div>
-
-        <div class="input-group">
-          <label>Password</label>
-          <input type="password" name="password" required />
-        </div>
-
-        <button type="submit" class="main-btn">Daftar</button>
-      </form>
-
-      <p class="social-text">Atau gunakan akun</p>
-
-      <div class="social-icons">
-        <button type="button">f</button>
-        <button type="button">G</button>
-        <button type="button">♪</button>
+    <div class="left-side">
+      <div class="left-content">
+        <h2>Lembur B06</h2>
+        <p>
+          Sistem pengelolaan lembur modern dengan tampilan elegan dan responsif.
+        </p>
       </div>
     </div>
 
-    <div class="form-container login-container">
-      <h2>Masuk di sini</h2>
+    <div class="right-side">
+      <div class="login-box">
 
-      <% if (typeof error !== "undefined" && error) { %>
-        <div class="error-msg"><%= error %></div>
-      <% } %>
+        <h1>
+          Masuk
+          <span>Sekarang</span>
+        </h1>
 
-      <form action="/login" method="POST">
-        <div class="input-group">
-          <label>Username</label>
-          <input type="text" name="username" required />
+        <p class="subtitle">Selamat datang kembali 👋</p>
+
+        <% if (typeof error !== "undefined" && error) { %>
+          <div class="error-msg">
+            <%= error %>
+          </div>
+        <% } %>
+
+        <form action="/login" method="POST">
+
+          <div class="input-group">
+            <label>Username</label>
+            <input
+              type="text"
+              name="username"
+              placeholder="Masukkan username"
+              required
+            >
+          </div>
+
+          <div class="input-group">
+            <label>Password</label>
+            <input
+              type="password"
+              name="password"
+              placeholder="Masukkan password"
+              required
+            >
+          </div>
+
+          <div class="forgot">
+            <a href="#">Lupa password?</a>
+          </div>
+
+          <button type="submit" class="login-btn">
+            Masuk
+          </button>
+
+        </form>
+
+        <div class="divider">
+          atau masuk dengan
         </div>
 
-        <div class="input-group">
-          <label>Password</label>
-          <input type="password" name="password" required />
+        <div class="social-login">
+          <button type="button" class="social-btn google">
+            <i class="fa-brands fa-google"></i>
+            Google
+          </button>
+
+          <button type="button" class="social-btn apple">
+            <i class="fa-brands fa-apple"></i>
+            Apple
+          </button>
         </div>
 
-        <div class="row">
-          <label class="remember">
-            <input type="checkbox" />
-            Ingat saya
-          </label>
-
-          <a href="#">Lupa password?</a>
-        </div>
-
-        <button type="submit" class="main-btn">Masuk</button>
-      </form>
-
-      <p class="social-text">Atau gunakan akun</p>
-
-      <div class="social-icons">
-        <button type="button">f</button>
-        <button type="button">G</button>
-        <button type="button">♪</button>
-      </div>
-    </div>
-
-    <div class="overlay-container">
-      <div class="overlay">
-        <div class="overlay-panel overlay-left">
-          <h1>Halo<br>teman!</h1>
-          <p>Sudah punya akun? Masuk dan lanjutkan aktivitas lemburmu.</p>
-          <button class="ghost-btn" id="loginBtn">← Masuk</button>
-        </div>
-
-        <div class="overlay-panel overlay-right">
-          <h1>Mulai<br>perjalananmu</h1>
-          <p>Belum punya akun? Daftar sekarang dan mulai gunakan aplikasi.</p>
-          <button class="ghost-btn" id="registerBtn">Daftar →</button>
-        </div>
       </div>
     </div>
 
   </div>
 
-  <script>
-    const container = document.getElementById("container");
-    const registerBtn = document.getElementById("registerBtn");
-    const loginBtn = document.getElementById("loginBtn");
-
-    registerBtn.addEventListener("click", () => {
-      container.classList.add("active");
-    });
-
-    loginBtn.addEventListener("click", () => {
-      container.classList.remove("active");
-    });
-  </script>
 </body>
 </html>
