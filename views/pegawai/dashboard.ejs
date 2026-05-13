@@ -1,0 +1,54 @@
+file dashboard.ejs 
+views/pegawai/dashboard.ejs
+kode:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Pegawai - Lembur B06</title>
+    <link rel="stylesheet" href="/css/basecoat.css">
+</head>
+<body class="bc-body">
+    <header class="bc-header">
+        <h1>Portal Lembur Pegawai</h1>
+    </header>
+
+    <main class="bc-container">
+        <section class="bc-card" style="margin-top: 20px; padding: 20px;">
+            <h2 class="bc-h2">Selamat Datang, Pegawai</h2>
+            <p>Gunakan tombol di bawah untuk mengajukan permohonan lembur baru[cite: 46].</p>
+            <div style="margin-top: 15px;">
+                <a href="/pegawai/ajukan" class="bc-btn bc-btn--primary">Ajukan Lembur (C)</a>
+                <a href="/pegawai/status" class="bc-btn bc-btn--outline">Lihat Status Penugasan (R)</a>
+            </div>
+        </section>
+
+        <section style="margin-top: 30px;">
+            <h3 class="bc-h3">Tugas Lembur Aktif</h3>
+            <table class="bc-table bc-table--striped">
+                <thead>
+                    <tr>
+                        <th>Tanggal</th>
+                        <th>Tugas</th>
+                        <th>Status</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>2026-05-13</td>
+                        <td>Update Database Migrasi [cite: 48]</td>
+                        <td><span class="bc-badge bc-badge--info">Berjalan</span></td>
+                        <td>
+                            <a href="/pegawai/lapor" class="bc-btn bc-btn--small">Kirim Laporan (U)</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+    <script src="/js/basecoat.js"></script>
+</body>
+</html>
