@@ -2,6 +2,8 @@
 const express = require("express");
 const app = express();
 const path = require("path");
+const authRoutes = require("./routes/authRoutes");
+const session = require("express-session");
 
 // Mendaftarkan folder public agar bisa diakses secara publik
 app.use(express.static(path.join(__dirname, "public")));
@@ -16,3 +18,13 @@ app.get("/", (req, res) => {
 app.listen(3000, () => {
   console.log("Server running on port 3000");
 });
+
+app.use(
+  session({
+    secret: "rahasia_bos_123",
+    resave: false,
+    saveUninitialized: true,
+  }),
+);
+
+app.use("/", authRoutes);

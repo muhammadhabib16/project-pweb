@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Lembur B06</title>
+    <link rel="stylesheet" href="/css/basecoat.css">
+    <style>
+        .login-container { max-width: 400px; margin: 100px auto; padding: 20px; border: 1px solid #ddd; border-radius: 8px; }
+        .error-msg { color: red; margin-bottom: 15px; }
+    </style>
+</head>
+<body class="bc-body">
+    <div class="login-container bc-card">
+        <h2 class="bc-h2">Login Lembur B06</h2>
+        <% if (error) { %>
+            <div class="error-msg"><%= error %></div>
+        <% } %>
+        <form action="/login" method="POST">
+            <div class="bc-form-group">
+                <label class="bc-label">Username</label>
+                <input type="text" name="username" class="bc-input" required>
+            </div>
+            <div class="bc-form-group">
+                <label class="bc-label">Password</label>
+                <input type="password" name="password" class="bc-input" required>
+            </div>
+            <button type="submit" class="bc-btn bc-btn--primary bc-btn--block">Masuk</button>
+        </form>
+    </div>
+</body>
+</html>
