@@ -18,4 +18,9 @@ router.get("/pimpinan/dashboard", isAuthenticated, (req, res) => {
   // Pastikan Bos punya file views/admin/dashboard.ejs
   res.render("pimpinan/dashboard", { user: req.session.user });
 });
+
+router.get("/pegawai/dashboard", isAuthenticated, (req, res) => {
+  // Pastikan Bos punya file views/admin/dashboard.ejs
+  res.render("pegawai/dashboard", { user: req.session.user });
+});
 module.exports = router;

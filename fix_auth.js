@@ -23,7 +23,7 @@ async function fixPassword() {
     // Update ke database
     await connection.execute("UPDATE users SET password = ? WHERE email = ?", [
       hash,
-      "pimpinan@lembur.com",
+      "pegawai@lembur.com",
     ]);
 
     // Tes langsung di sini
